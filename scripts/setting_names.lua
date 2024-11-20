@@ -1,3 +1,8 @@
+--[[
+    Author: Igromanru
+    Date: 20.11.2024
+    Mod Name: Decode Minigame Solver
+]]
 
 ---@enum SettingNames
 local SettingNames = {
