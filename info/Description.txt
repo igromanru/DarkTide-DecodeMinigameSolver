@@ -1,7 +1,7 @@
 [font=Verdana][size=4][b]Description[/b][/size][/font]
 The mod basically plays the Decode Symbols minigame for you.
-[b]Warning![/b] It might be inaccurate.
-Current set up works for me most of the time. If you have issues check out the "Settings" section below and report in the comments your experience.
+Warning! It might be inaccurate sometimes.
+Current set up works for me like 99% of the time. If you have any issues, check out the “Settings” section below and report your experience in the comments.
 
 [font=Verdana][size=4][b]Requirements[/b][/size][/font]
 [size=3]- [url=https://www.nexusmods.com/warhammer40kdarktide/mods/19]Darktide Mod Loader[/url]
