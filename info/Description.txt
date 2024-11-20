@@ -16,11 +16,11 @@ Current set up works for me like 99% of the time. If you have any issues, check 
 [font=Verdana][size=4][b]Settings[/b][/size][/font]
 The mod has two parameter that can be changed. [b]Interaction Cooldown[/b] and [b]Target Precision[/b].
 [font=Verdana][b]Interaction Cooldown[/b][/font]
-[size=2]Default value: 100[/size]
-It's the wait time in milliseconds between each interaction click. The default value is 100ms.
+[size=2]Default value: 150[/size]
+It's the wait time in milliseconds between each interaction click.
 The cooldown is needed to prevent double clicks.
 [font=Verdana][b]Target Precision[/b][/font]
-[size=2]Default value: 3[/size]
+[size=2]Default value: 4[/size]
 The value determines how close the minigame cursor (the moving box) has to be to the target symbol's center before the mod interacts with it.
 The higher the value, the closer the cursor has to be to the center before the mod triggers an interaction.
 
