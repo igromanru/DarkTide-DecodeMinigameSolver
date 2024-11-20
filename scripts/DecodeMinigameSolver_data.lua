@@ -27,7 +27,7 @@ return {
 				setting_id = SettingNames.TargetPrecision,
 				tooltip = SettingNames.TargetPrecisionTooltip,
 				type = "numeric",
-				default_value = 2,
+				default_value = 3,
 				range = {0, 5},
 				decimals_number = 0
 			},

@@ -2,12 +2,14 @@
     Author: Igromanru
     Date: 20.11.2024
     Mod Name: Decode Minigame Solver
+    Version: 1.1.0
 ]]
 local mod = get_mod("DecodeMinigameSolver")
 
 local SettingNames = mod:io_dofile("DecodeMinigameSolver/scripts/setting_names")
 
 local decode_on_target = false
+local next_decode_on_target = false
 local cooldown = 0.0 ---@type number
 
 function mod.update(delta_time)
@@ -24,19 +26,25 @@ local function get_target_precision()
     return mod:get(SettingNames.TargetPrecision) * 0.1
 end
 
-local function is_decode_on_target(minigame, t)
+---@param minigame MinigameDecodeSymbols
+---@param t float # Time
+---@param stage_offset number? #Default: 0 (current stage)
+---@return boolean is_on_target
+local function is_decode_on_target(minigame, t, stage_offset)
     if not minigame or not t then return false end
+    stage_offset = stage_offset or 0
 
-    local sweep_duration = minigame._decode_symbols_sweep_duration
 	local current_stage = minigame._current_stage
+    if not current_stage then return false end
+    current_stage = current_stage + stage_offset
+    
+    local sweep_duration = minigame._decode_symbols_sweep_duration
 	local targets = minigame._decode_targets
 	local target = targets[current_stage]
     if target then
         local precision = get_target_precision()
         local start_offset = 1.5 - precision
         local end_offset = 0.5 + precision
-        -- mod:echo("start_offset: %f", start_offset)
-        -- mod:echo("end_offset: %f", end_offset)
         local target_margin = 1 / (minigame._decode_symbols_items_per_stage - 1) * sweep_duration
         local start_target = (target - start_offset) * target_margin
         local end_target = (target - end_offset) * target_margin
@@ -48,7 +56,8 @@ local function is_decode_on_target(minigame, t)
 end
 
 mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
-	decode_on_target = cooldown <= 0 and is_decode_on_target(self, t)
+	decode_on_target = next_decode_on_target or (cooldown <= 0 and is_decode_on_target(self, t))
+    next_decode_on_target = decode_on_target and next_decode_on_target ~= true and is_decode_on_target(self, t, 1)
 end)
 
 mod:hook(CLASS.InputService, "_get", function(func, self, action_name)

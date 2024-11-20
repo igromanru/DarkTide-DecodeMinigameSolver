@@ -26,6 +26,6 @@ return {
     en = "Target Precision"
   },
   [SettingNames.TargetPrecisionTooltip] = {
-    en = "The bigger the value, the smaller the detection window when the cursor is positioned on the symbol. Default: 2"
+    en = "The bigger the value, the smaller the detection window when the cursor is positioned on the symbol. Default: 3"
   },
 }
