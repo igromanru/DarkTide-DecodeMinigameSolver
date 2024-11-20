@@ -2,14 +2,14 @@
     Author: Igromanru
     Date: 20.11.2024
     Mod Name: Decode Minigame Solver
-    Version: 1.1.1
+    Version: 1.2.0
 ]]
 local mod = get_mod("DecodeMinigameSolver")
 
 local SettingNames = mod:io_dofile("DecodeMinigameSolver/scripts/setting_names")
 
 local decode_on_target = false
-local next_decode_on_target = false
+local same_targets_count = 0
 local cooldown = 0.0 ---@type number
 
 function mod.update(delta_time)
@@ -55,16 +55,53 @@ local function is_decode_on_target(minigame, t, stage_offset)
     return false
 end
 
+---@param minigame MinigameDecodeSymbols
+---@param compare_target integer
+---@return integer Count
+local function count_rows_with_same_target(minigame)
+    if not minigame then return 0 end
+    
+    local current_stage = minigame._current_stage
+    local targets = minigame._decode_targets
+    if not current_stage or not targets or table.is_empty(targets) then return 0 end
+    
+    local result = 0
+    local target = targets[current_stage]
+    if target then
+        for i = current_stage, #targets do
+            if targets[i] == target then
+                result = result + 1
+            else
+                break
+            end
+        end
+    end
+    return result
+end
+
+mod:hook_safe(CLASS.MinigameDecodeSymbols, "start", function(self, player)
+	decode_on_target = false
+    same_targets_count = 0
+    cooldown = 0.0
+end)
+
 mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
-	decode_on_target = mod:get(SettingNames.EnableMod) and (next_decode_on_target or (cooldown <= 0 and is_decode_on_target(self, t)))
-    next_decode_on_target = decode_on_target and next_decode_on_target ~= true and is_decode_on_target(self, t, 1)
+	decode_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
+    if decode_on_target and same_targets_count <= 0 then
+        same_targets_count = count_rows_with_same_target(self)
+    end
 end)
 
 mod:hook(CLASS.InputService, "_get", function(func, self, action_name)
     local result = func(self, action_name)
 
-    if not result and action_name == "interact_hold" and decode_on_target then
-        cooldown = get_cooldown()
+    if not result and action_name == "interact_hold" and cooldown <= 0 and same_targets_count > 0 then
+        if same_targets_count == 1 then
+            cooldown = get_cooldown()
+        else
+            cooldown = 0.05
+        end
+        same_targets_count = same_targets_count - 1
         result = true
     end
 

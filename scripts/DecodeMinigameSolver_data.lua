@@ -24,7 +24,7 @@ return {
 				setting_id = SettingNames.InteractCooldown,
 				tooltip = SettingNames.InteractCooldownTooltip,
 				type = "numeric",
-				default_value = 100,
+				default_value = 150,
 				range = {50, 300},
 				decimals_number = 0
 			},
@@ -32,8 +32,8 @@ return {
 				setting_id = SettingNames.TargetPrecision,
 				tooltip = SettingNames.TargetPrecisionTooltip,
 				type = "numeric",
-				default_value = 3,
-				range = {0, 5},
+				default_value = 4,
+				range = {1, 4},
 				decimals_number = 0
 			},
 		},
