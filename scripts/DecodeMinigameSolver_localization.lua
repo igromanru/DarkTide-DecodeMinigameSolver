@@ -11,13 +11,16 @@ return {
   {
     en = "Passes the Decode Symbol Minigame automatically"
   },
-  [SettingNames.UsePing] = {
-    en = "Use ping for interaction cooldown"
-  },
   [SettingNames.InteractCooldown] = {
     en = "Interaction Cooldown"
   },
   [SettingNames.InteractCooldownTooltip] = {
-    en = "Wait time between interactions in miliseconds"
+    en = "Wait time between interactions in milliseconds. Default: 100"
+  },
+  [SettingNames.TargetPrecision] = {
+    en = "Target Precision"
+  },
+  [SettingNames.TargetPrecisionTooltip] = {
+    en = "The bigger the value, the smaller the detection window when the cursor is positioned on the symbol. Default: 2"
   },
 }

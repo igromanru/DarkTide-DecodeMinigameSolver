@@ -11,16 +11,19 @@ return {
 		widgets =
 		{
 			{
-				setting_id = SettingNames.UsePing,
-				type = "checkbox",
-				default_value = true
-			},
-			{
 				setting_id = SettingNames.InteractCooldown,
 				tooltip = SettingNames.InteractCooldownTooltip,
 				type = "numeric",
 				default_value = 100,
 				range = {50, 300},
+				decimals_number = 0
+			},
+			{
+				setting_id = SettingNames.TargetPrecision,
+				tooltip = SettingNames.TargetPrecisionTooltip,
+				type = "numeric",
+				default_value = 2,
+				range = {0, 5},
 				decimals_number = 0
 			},
 		},
