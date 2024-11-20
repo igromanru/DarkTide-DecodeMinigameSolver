@@ -1,0 +1,33 @@
+[font=Verdana][size=4][b]Description[/b][/size][/font]
+The mod basically plays the Decode Symbols minigame for you.
+[b]Warning![/b] It might be inaccurate.
+Current set up works for me most of the time. If you have issues check out the "Settings" section below and report in the comments your experience.
+
+[font=Verdana][size=4][b]Requirements[/b][/size][/font]
+[size=3]- [url=https://www.nexusmods.com/warhammer40kdarktide/mods/19]Darktide Mod Loader[/url]
+- [url=https://www.nexusmods.com/warhammer40kdarktide/mods/8]Darktide Mod Framework[/url][/size]
+
+[font=Verdana][size=4][b]Installation[/b][/size][/font]
+1. Read descriptions and install [url=https://www.nexusmods.com/warhammer40kdarktide/mods/19]Darktide Mod Loader[/url] and [url=https://www.nexusmods.com/warhammer40kdarktide/mods/8]Darktide Mod Framework[/url]
+2. Download and install latest version of the mod with Vortex from the [b]Files[/b] tab.
+3. Make sure the mod is enabled in Vortex's [b]Load Order[/b] tab.
+4. In game you can disable options in the [b]Mod Options[/b] menu.
+
+[font=Verdana][size=4][b]Settings[/b][/size][/font]
+The mod has two parameter that can be changed. [b]Interaction Cooldown[/b] and [b]Target Precision[/b].
+[font=Verdana][b]Interaction Cooldown[/b][/font]
+It's the wait time in milliseconds between each interaction click. The default value is 100ms.
+The cooldown is needed to prevent double clicks.
+[font=Verdana][b]Target Precision[/b][/font]
+The value determines how close the minigame cursor (the moving box) has to be to the target symbol's center before the mod interacts with it.
+The higher the value, the closer the cursor has to be to the center before the mod triggers an interaction.
+If the accuracy is too high, the chance is reduced that a symbol in the next row directly below will be triggered directly.
+
+[b][url=https://github.com/igromanru/DarkTide-DecodeMinigameSolver]GitHub Page[/url][/b]
+
+[font=Arial][size=4]Highest form of appreciation[/size][/font]
+[size=2]If you like my work and feel generous, you can support me.[/size]
+[b]BTC:[/b] bc1q3frvfljn7ut09ggep2gxugv4ypqvyexz3ya7ja
+[b]ETH:[/b] 0xEedBbF6eFa84198cc94fE4Bf6FBB5dfa674AF86b
+[b]ADA:[/b] addr1qyx2sd2rgwdzvjhwnc35udx4k6w9lg524pwrf0llr7d2shzrewyq3nqyxfceuhgh5n5ucx3n8ws0n48krrlpw4khtedq4hzv93
+[url=https://ko-fi.com/igromanru][img]https://i.imgur.com/rGcPxK8.png[/img][/url]
