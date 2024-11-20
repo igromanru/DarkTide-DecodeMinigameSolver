@@ -33,9 +33,13 @@ local function is_decode_on_target(minigame, t)
 	local target = targets[current_stage]
     if target then
         local precision = get_target_precision()
+        local start_offset = 1.5 - precision
+        local end_offset = 0.5 + precision
+        -- mod:echo("start_offset: %f", start_offset)
+        -- mod:echo("end_offset: %f", end_offset)
         local target_margin = 1 / (minigame._decode_symbols_items_per_stage - 1) * sweep_duration
-        local start_target = (target - 1.5 - precision) * target_margin
-        local end_target = (target - 0.5 + precision) * target_margin
+        local start_target = (target - start_offset) * target_margin
+        local end_target = (target - end_offset) * target_margin
         local cursor_time = minigame:_calculate_cursor_time(t)
         return cursor_time > start_target and cursor_time < end_target
     end
