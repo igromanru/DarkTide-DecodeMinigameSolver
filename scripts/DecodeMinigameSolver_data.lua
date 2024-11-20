@@ -16,6 +16,11 @@ return {
 		widgets =
 		{
 			{
+				setting_id = SettingNames.EnableMod,
+				type = "checkbox",
+				default_value = true
+			},
+			{
 				setting_id = SettingNames.InteractCooldown,
 				tooltip = SettingNames.InteractCooldownTooltip,
 				type = "numeric",

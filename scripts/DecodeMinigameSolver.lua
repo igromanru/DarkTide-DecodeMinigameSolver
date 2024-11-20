@@ -56,7 +56,7 @@ local function is_decode_on_target(minigame, t, stage_offset)
 end
 
 mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
-	decode_on_target = next_decode_on_target or (cooldown <= 0 and is_decode_on_target(self, t))
+	decode_on_target = mod:get(SettingNames.EnableMod) and (next_decode_on_target or (cooldown <= 0 and is_decode_on_target(self, t)))
     next_decode_on_target = decode_on_target and next_decode_on_target ~= true and is_decode_on_target(self, t, 1)
 end)
 

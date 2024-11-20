@@ -6,6 +6,7 @@
 
 ---@enum SettingNames
 local SettingNames = {
+	EnableMod = "enable_mod",
 	InteractCooldown = "interact_cooldown",
 	InteractCooldownTooltip = "interact_cooldown_tooltip",
 	TargetPrecision = "target_precision",

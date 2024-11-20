@@ -16,6 +16,9 @@ return {
   {
     en = "Passes the Decode Symbol Minigame automatically"
   },
+  [SettingNames.EnableMod] = {
+    en = "Enable"
+  },
   [SettingNames.InteractCooldown] = {
     en = "Interaction Cooldown"
   },
