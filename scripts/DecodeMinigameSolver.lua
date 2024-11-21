@@ -2,13 +2,12 @@
     Author: Igromanru
     Date: 20.11.2024
     Mod Name: Decode Minigame Solver
-    Version: 1.2.0
+    Version: 1.2.1
 ]]
 local mod = get_mod("DecodeMinigameSolver")
 
 local SettingNames = mod:io_dofile("DecodeMinigameSolver/scripts/setting_names")
 
-local decode_on_target = false
 local same_targets_count = 0
 local cooldown = 0.0 ---@type number
 
@@ -79,15 +78,22 @@ local function count_rows_with_same_target(minigame)
     return result
 end
 
-mod:hook_safe(CLASS.MinigameDecodeSymbols, "start", function(self, player)
-	decode_on_target = false
+local function Reset()
     same_targets_count = 0
     cooldown = 0.0
+end
+
+mod:hook_safe(CLASS.MinigameDecodeSymbols, "start", function(self, player)
+    Reset()
+end)
+
+mod:hook_safe(CLASS.MinigameDecodeSymbols, "stop", function(self)
+    Reset()
 end)
 
 mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
-	decode_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
-    if decode_on_target and same_targets_count <= 0 then
+	local is_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
+    if is_on_target and same_targets_count <= 0 then
         same_targets_count = count_rows_with_same_target(self)
     end
 end)
