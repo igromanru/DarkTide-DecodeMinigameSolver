@@ -33,13 +33,13 @@ local function is_decode_on_target(minigame, t, stage_offset)
     if not minigame or not t then return false end
     stage_offset = stage_offset or 0
 
-	local current_stage = minigame._current_stage
+    local current_stage = minigame._current_stage
     if not current_stage then return false end
     current_stage = current_stage + stage_offset
-    
+
     local sweep_duration = minigame._decode_symbols_sweep_duration
-	local targets = minigame._decode_targets
-	local target = targets[current_stage]
+    local targets = minigame._decode_targets
+    local target = targets[current_stage]
     if target then
         local precision = get_target_precision()
         local start_offset = 1.5 - precision
@@ -59,11 +59,11 @@ end
 ---@return integer Count
 local function count_rows_with_same_target(minigame)
     if not minigame then return 0 end
-    
+
     local current_stage = minigame._current_stage
     local targets = minigame._decode_targets
     if not current_stage or not targets or table.is_empty(targets) then return 0 end
-    
+
     local result = 0
     local target = targets[current_stage]
     if target then
@@ -92,7 +92,7 @@ mod:hook_safe(CLASS.MinigameDecodeSymbols, "stop", function(self)
 end)
 
 mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
-	local is_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
+    local is_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
     if is_on_target and same_targets_count <= 0 then
         same_targets_count = count_rows_with_same_target(self)
     end
@@ -113,4 +113,3 @@ mod:hook(CLASS.InputService, "_get", function(func, self, action_name)
 
     return result
 end)
-
