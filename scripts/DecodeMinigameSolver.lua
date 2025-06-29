@@ -83,22 +83,22 @@ local function Reset()
     cooldown = 0.0
 end
 
-mod:hook_safe(CLASS.MinigameDecodeSymbols, "start", function(self, player)
+mod:hook_safe("MinigameDecodeSymbols", "start", function(self, player)
     Reset()
 end)
 
-mod:hook_safe(CLASS.MinigameDecodeSymbols, "stop", function(self)
+mod:hook_safe("MinigameDecodeSymbols", "stop", function(self)
     Reset()
 end)
 
-mod:hook_safe(CLASS.MinigameDecodeSymbols, "is_on_target", function(self, t)
+mod:hook_safe("MinigameDecodeSymbols", "is_on_target", function(self, t)
     local is_on_target = mod:get(SettingNames.EnableMod) and (cooldown <= 0 and is_decode_on_target(self, t))
     if is_on_target and same_targets_count <= 0 then
         same_targets_count = count_rows_with_same_target(self)
     end
 end)
 
-mod:hook(CLASS.InputService, "_get", function(func, self, action_name)
+mod:hook("InputService", "_get", function(func, self, action_name)
     local result = func(self, action_name)
 
     if not result and action_name == "interact_hold" and cooldown <= 0 and same_targets_count > 0 then
